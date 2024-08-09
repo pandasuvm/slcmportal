@@ -1,0 +1,42 @@
+/* src/styles/styles.css */
+
+body {
+  font-family: Arial, sans-serif;
+  background-color: #cfcdc0;
+  margin: 0;
+  padding: 0;
+}
+
+.homepage {
+  padding: 20px;
+}
+
+.attendance-section, .timetable-section {
+  background-color: #d9d9d9;
+  margin: 20px 0;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.attendance-section h2, .timetable-section h2 {
+  margin-top: 5px;
+  color: grey;
+}
+
+.graphs {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  
+}
+
+.graphs > div {
+  flex: 1 1 200px;
+  margin: 10px;
+}
+
+.timetable {
+  display: flex;
+  justify-content: center;
+}

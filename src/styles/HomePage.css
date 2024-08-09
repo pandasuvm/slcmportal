@@ -1,0 +1,143 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
+
+body {
+  font-family: 'Poppins', sans-serif;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  background-color: #cfcdc0; /* Ensure the background color is consistent */
+}
+
+.home-wrapper {
+  display: flex;
+  height: 100vh;
+}
+
+.sidebar {
+  width: 200px;
+  background-color: #235f5e;
+  padding: 20px 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  color: white;
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100%;
+  z-index: 1;
+}
+
+.sidebar-item {
+  padding: 10px 15px;
+  cursor: pointer;
+  border-radius: 5px;
+  text-align: left;
+}
+
+.sidebar-item:hover {
+  background-color: #34495e;
+}
+
+.home-container {
+  display: flex;
+  flex: 1;
+  margin-left: 200px; /* Adjust for the sidebar width */
+  padding: 20px;
+  background-color: #cfcdc0; /* Ensure the background color is consistent */
+  width: calc(100% - 200px); /* Full width minus sidebar */
+}
+
+.left-section {
+  flex: 2;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.greeting-box {
+  background-color: #d9d9d9;
+  padding: 20px;
+  border-radius: 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  margin-top: 20px;
+  margin-left: 20px;
+  width: 820px;
+  position: relative;
+}
+
+.greeting-box h2 {
+  font-size: 40px;
+  margin-bottom: 20px;
+  color: #2c3e50;
+}
+
+.greeting-box p {
+  line-height: 30px;
+  color: #7f8c8d;
+}
+
+.attendance-box {
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+.overall-attendance {
+  flex: 0.6;
+  background-color: #d9d9d9;
+  padding: 10px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  height: 300px;
+  margin-left: 20px;
+  width: 100%; /* Adjust width to use full available space */
+}
+
+.subject-attendance-box {
+  flex: 1;
+  background-color: #d9d9d9;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  margin-left: 20px;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+  height: auto; /* Adjust height as needed */
+  overflow: auto; /* Allow scrolling if needed */
+  margin-right: 20px;
+}
+
+.right-section {
+  flex: 0.6;
+  margin-top: 20px;
+  background-color: #d9d9d9;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 400px;
+}
+
+.banner-image {
+  position: absolute;
+  right: 20px; /* Adjust positioning as needed */
+  bottom: 20px; /* Adjust positioning as needed */
+  width: 150px; /* Adjust size as needed */
+  height: auto; /* Maintain aspect ratio */
+  border-radius: 10px;
+}
+
+.course {
+  padding: 20px;
+  background-color: #d9d9d9;
+  height: 100px;
+  border-radius: 20px;
+  text-align: center;
+  margin-top: 10px; /* Adjust spacing from the graph */
+  width: 100%; /* Ensure it takes the full width available */
+}

@@ -1,0 +1,29 @@
+.calendar-container {
+    width: 100%;
+    
+    
+    
+    text-align: center;
+    
+  }
+  
+  .calendar-container h3 {
+    margin-bottom: 20px;
+    
+    color: #2c3e50;
+  }
+  
+  .class-list {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+  }
+  
+  .class-item {
+    background-color: #235f5e;
+    color: #ffffff;
+    padding: 15px;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
