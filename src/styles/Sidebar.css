@@ -1,0 +1,42 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
+
+.sidebar {
+  width: 200px;
+  background-color: #235f5e;
+  padding: 20px 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  color: white;
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100%;
+  z-index: 1;
+}
+
+.sidebar-item {
+  padding: 10px 15px;
+  cursor: pointer;
+  border-radius: 5px;
+  text-align: left;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 400;
+  color: white; /* Set link text color to white */
+  text-decoration: none; /* Remove underline */
+  transition: background-color 0.3s ease, color 0.3s ease; /* Smooth transition */
+}
+
+.sidebar-item:hover {
+  background-color: #cfcdc0; /* Light background color on hover */
+  color: black; /* Change text color on hover */
+}
+
+.sidebar-item.current {
+  background-color: #cfcdc0; /* Match the background color of the homepage */
+  color: black; /* Ensure the current item text is black for better contrast */
+  border-radius: 15px; /* Rounded corners for the active item */
+  padding: 10px 15px; /* Ensure padding remains consistent */
+  width: calc(100% - 20px); /* Ensure it fills the sidebar background */
+  margin-left: 10px; /* Align with sidebar padding */
+}

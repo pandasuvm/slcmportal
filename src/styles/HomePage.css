@@ -1,3 +1,5 @@
+/* HomePage.css */
+
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
 
 body {
@@ -5,7 +7,7 @@ body {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  background-color: #cfcdc0; /* Ensure the background color is consistent */
+  background-color: #cfcdc0;
 }
 
 .home-wrapper {
@@ -13,38 +15,12 @@ body {
   height: 100vh;
 }
 
-.sidebar {
-  width: 200px;
-  background-color: #235f5e;
-  padding: 20px 10px;
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-  color: white;
-  position: fixed;
-  top: 0;
-  left: 0;
-  height: 100%;
-  z-index: 1;
-}
-
-.sidebar-item {
-  padding: 10px 15px;
-  cursor: pointer;
-  border-radius: 5px;
-  text-align: left;
-}
-
-.sidebar-item:hover {
-  background-color: #34495e;
-}
-
 .home-container {
   display: flex;
   flex: 1;
-  margin-left: 200px; /* Adjust for the sidebar width */
+  margin-left: 200px; /* Sidebar width */
   padding: 20px;
-  background-color: #cfcdc0; /* Ensure the background color is consistent */
+  background-color: #cfcdc0;
   width: calc(100% - 200px); /* Full width minus sidebar */
 }
 
@@ -92,7 +68,7 @@ body {
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   height: 300px;
   margin-left: 20px;
-  width: 100%; /* Adjust width to use full available space */
+  width: 100%;
 }
 
 .subject-attendance-box {
@@ -105,8 +81,8 @@ body {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: 20px;
-  height: auto; /* Adjust height as needed */
-  overflow: auto; /* Allow scrolling if needed */
+  height: auto;
+  overflow: auto;
   margin-right: 20px;
 }
 
@@ -125,10 +101,10 @@ body {
 
 .banner-image {
   position: absolute;
-  right: 20px; /* Adjust positioning as needed */
-  bottom: 20px; /* Adjust positioning as needed */
-  width: 150px; /* Adjust size as needed */
-  height: auto; /* Maintain aspect ratio */
+  right: 20px;
+  bottom: 20px;
+  width: 150px;
+  height: auto;
   border-radius: 10px;
 }
 
@@ -138,6 +114,6 @@ body {
   height: 100px;
   border-radius: 20px;
   text-align: center;
-  margin-top: 10px; /* Adjust spacing from the graph */
-  width: 100%; /* Ensure it takes the full width available */
+  margin-top: 10px;
+  width: 100%;
 }
