@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import AttendanceGraph from '../components/AttendanceGraph';
 import Calendar from '../components/Calendar';
 import Sidebar from '../components/Sidebar';
@@ -23,7 +24,9 @@ const HomePage = () => {
           <div className="greeting-box">
             <h2>Hey, Harshita!</h2>
             <p>You have 1 new assessment to do.
-              <div><a href="#explore">Explore &gt;&gt;</a></div>
+              <div>
+                <Link to="/assessments">Explore &gt;&gt;</Link>
+              </div>
             </p>
             <img src={bannerImage} alt="Banner" className="banner-image" />
           </div>

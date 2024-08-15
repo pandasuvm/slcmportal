@@ -3,10 +3,14 @@ import Sidebar from '../components/Sidebar';
 import '../styles/ContactsPage.css'; // Contacts specific styling
 
 const contactsData = [
-  { avatar: 'https://cdn-icons-png.flaticon.com/512/2922/2922510.png', name: 'Abc', phone: '+91-9876543212', email: 'Abc@rgipt.ac.in', specialization: 'AI-MI' },
-  { avatar: 'https://cdn-icons-png.flaticon.com/512/2922/2922510.png', name: 'Defg', phone: '+91-9876543212', email: 'Abc@rgipt.ac.in', specialization: 'Data Science' },
-  { avatar: 'https://cdn-icons-png.flaticon.com/512/2922/2922510.png', name: 'Hijk', phone: '+91-9876543212', email: 'Abc@rgipt.ac.in', specialization: 'Cyber' },
-  { avatar: 'https://cdn-icons-png.flaticon.com/512/2922/2922510.png', name: 'Lmn', phone: '+91-9876543212', email: 'Abc@rgipt.ac.in', specialization: 'Web-Dev' },
+  { avatar: 'https://cdn-icons-png.flaticon.com/512/2922/2922510.png', name: 'John Doe', phone: '+91-9876543212', email: 'john.doe@rgipt.ac.in', specialization: 'AI-ML' },
+  { avatar: 'https://cdn-icons-png.flaticon.com/512/2922/2922510.png', name: 'Jane Smith', phone: '+91-9876543212', email: 'jane.smith@rgipt.ac.in', specialization: 'Data Science' },
+  { avatar: 'https://cdn-icons-png.flaticon.com/512/2922/2922510.png', name: 'Michael Brown', phone: '+91-9876543212', email: 'michael.brown@rgipt.ac.in', specialization: 'Cyber Security' },
+  { avatar: 'https://cdn-icons-png.flaticon.com/512/2922/2922510.png', name: 'Emily Davis', phone: '+91-9876543212', email: 'emily.davis@rgipt.ac.in', specialization: 'Web Development' },
+  { avatar: 'https://cdn-icons-png.flaticon.com/512/2922/2922510.png', name: 'David Wilson', phone: '+91-9876543212', email: 'david.wilson@rgipt.ac.in', specialization: 'AI-ML' },
+  { avatar: 'https://cdn-icons-png.flaticon.com/512/2922/2922510.png', name: 'Sophia Johnson', phone: '+91-9876543212', email: 'sophia.johnson@rgipt.ac.in', specialization: 'Data Science' },
+  { avatar: 'https://cdn-icons-png.flaticon.com/512/2922/2922510.png', name: 'James Williams', phone: '+91-9876543212', email: 'james.williams@rgipt.ac.in', specialization: 'Cyber Security' },
+  { avatar: 'https://cdn-icons-png.flaticon.com/512/2922/2922510.png', name: 'Olivia Martinez', phone: '+91-9876543212', email: 'olivia.martinez@rgipt.ac.in', specialization: 'Web Development' },
 ];
 
 const ContactsPage = () => {
