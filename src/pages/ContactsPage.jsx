@@ -1,28 +1,57 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Sidebar from '../components/Sidebar';
 import '../styles/ContactsPage.css'; // Contacts specific styling
 
-const contactsData = [
-  { avatar: 'https://cdn-icons-png.flaticon.com/512/2922/2922510.png', name: 'John Doe', phone: '+91-9876543212', email: 'john.doe@rgipt.ac.in', specialization: 'AI-ML' },
-  { avatar: 'https://cdn-icons-png.flaticon.com/512/2922/2922510.png', name: 'Jane Smith', phone: '+91-9876543212', email: 'jane.smith@rgipt.ac.in', specialization: 'Data Science' },
-  { avatar: 'https://cdn-icons-png.flaticon.com/512/2922/2922510.png', name: 'Michael Brown', phone: '+91-9876543212', email: 'michael.brown@rgipt.ac.in', specialization: 'Cyber Security' },
-  { avatar: 'https://cdn-icons-png.flaticon.com/512/2922/2922510.png', name: 'Emily Davis', phone: '+91-9876543212', email: 'emily.davis@rgipt.ac.in', specialization: 'Web Development' },
-  { avatar: 'https://cdn-icons-png.flaticon.com/512/2922/2922510.png', name: 'David Wilson', phone: '+91-9876543212', email: 'david.wilson@rgipt.ac.in', specialization: 'AI-ML' },
-  { avatar: 'https://cdn-icons-png.flaticon.com/512/2922/2922510.png', name: 'Sophia Johnson', phone: '+91-9876543212', email: 'sophia.johnson@rgipt.ac.in', specialization: 'Data Science' },
-  { avatar: 'https://cdn-icons-png.flaticon.com/512/2922/2922510.png', name: 'James Williams', phone: '+91-9876543212', email: 'james.williams@rgipt.ac.in', specialization: 'Cyber Security' },
-  { avatar: 'https://cdn-icons-png.flaticon.com/512/2922/2922510.png', name: 'Olivia Martinez', phone: '+91-9876543212', email: 'olivia.martinez@rgipt.ac.in', specialization: 'Web Development' },
-];
+const sheetId = '1a8ksEGjlQ5sg6-a8nS7AAk2LS3ZjxF5XJOgOb1GPklM';
+      const apiKey = 'AIzaSyDfp9sC09FVbpFLKO9iW65VPneEPvIyIHU';
+      const range = 'Sheet4!A2:E';    // Adjust the range if needed
 
 const ContactsPage = () => {
   const [searchTerm, setSearchTerm] = useState('');
-  const [filteredContacts, setFilteredContacts] = useState(contactsData);
+  const [contacts, setContacts] = useState([]);
+  const [filteredContacts, setFilteredContacts] = useState([]);
+
+  useEffect(() => {
+    const fetchContactsData = async () => {
+      try {
+        const response = await fetch(
+          `https://sheets.googleapis.com/v4/spreadsheets/${sheetId}/values/${range}?key=${apiKey}`
+        );
+
+        if (!response.ok) {
+          throw new Error(`HTTP error! Status: ${response.status}`);
+        }
+
+        const data = await response.json();
+        if (!data.values) {
+          throw new Error('No data found in the spreadsheet.');
+        }
+
+        const [headers, ...rows] = data.values;
+        const contactsList = rows.map(row => ({
+          name: row[0],
+          phone: row[1],
+          email: row[2],
+          specialization: row[3],
+          avatar: row[4],
+        }));
+
+        setContacts(contactsList);
+        setFilteredContacts(contactsList);
+      } catch (error) {
+        console.error('Error fetching data:', error.message);
+      }
+    };
+
+    fetchContactsData();
+  }, []);
 
   // Handle search input
   const handleSearch = (event) => {
     const value = event.target.value.toLowerCase();
     setSearchTerm(value);
 
-    const filtered = contactsData.filter(contact =>
+    const filtered = contacts.filter(contact =>
       contact.name.toLowerCase().includes(value) ||
       contact.phone.toLowerCase().includes(value) ||
       contact.email.toLowerCase().includes(value) ||

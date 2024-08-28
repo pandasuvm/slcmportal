@@ -1,34 +1,37 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Sidebar from '../components/Sidebar'; // Assuming you already have this component
 import '../styles/SchedulePage.css'; // New CSS file for the schedule page styles
 
 const timeSlots = ["9:00 AM", "10:00 AM", "11:00 AM", "1:00 PM", "2:00 PM"];
-const classes = {
-  "MON": [
-    { time: "9:00 AM", subject: "CS201", room: "Room 101" },
-    { time: "11:00 AM", subject: "MA301", room: "Room 202" },
-  ],
-  "TUE": [
-    { time: "10:00 AM", subject: "PY101", room: "Room 103" },
-    { time: "2:00 PM", subject: "CS302", room: "Room 101" },
-  ],
-  "WED": [
-    { time: "11:00 AM", subject: "MA301", room: "Room 202" },
-    { time: "1:00 PM", subject: "CS201", room: "Room 101" },
-  ],
-  "THURS": [
-    { time: "9:00 AM", subject: "CS302", room: "Room 101" },
-  ],
-  "FRI": [
-    { time: "10:00 AM", subject: "PY101", room: "Room 103" },
-    { time: "1:00 PM", subject: "CS201", room: "Room 101" },
-  ],
-};
-
-const professors = ["Prof. A. Smith", "Dr. B. Johnson", "Prof. C. Lee", "Dr. D. Patel"];
 
 const SchedulePage = () => {
+  const [classes, setClasses] = useState({});
   const [hoveredClass, setHoveredClass] = useState(null);
+
+  useEffect(() => {
+    // Replace with your Google Sheets API URL
+    const fetchScheduleData = async () => {
+      try {
+        const response = await fetch(`https://sheets.googleapis.com/v4/spreadsheets/1a8ksEGjlQ5sg6-a8nS7AAk2LS3ZjxF5XJOgOb1GPklM/values/Sheet2!A2:E?key=AIzaSyDfp9sC09FVbpFLKO9iW65VPneEPvIyIHU`);
+        const data = await response.json();
+        const scheduleData = {};
+
+        data.values.forEach(row => {
+          const [day, time, subject, room, professor] = row;
+          if (!scheduleData[day]) {
+            scheduleData[day] = [];
+          }
+          scheduleData[day].push({ time, subject, room, professor });
+        });
+
+        setClasses(scheduleData);
+      } catch (error) {
+        console.error('Error fetching schedule data:', error);
+      }
+    };
+
+    fetchScheduleData();
+  }, []);
 
   const handleMouseEnter = (day, index) => {
     setHoveredClass({ day, index });
@@ -57,11 +60,11 @@ const SchedulePage = () => {
                 <tr key={day}>
                   <td className="day">{day}</td>
                   {timeSlots.map((time, index) => {
-                    const classInfo = classes[day].find(
+                    const classInfo = classes[day]?.find(
                       (cls) => cls.time === time
                     );
                     const isHovered = hoveredClass && hoveredClass.day === day && hoveredClass.index === index;
-                    const displayText = isHovered ? professors[Math.floor(Math.random() * professors.length)] : classInfo ? `${classInfo.subject} (${classInfo.room})` : '';
+                    const displayText = isHovered && classInfo ? classInfo.professor : classInfo ? `${classInfo.subject} (${classInfo.room})` : '';
 
                     return (
                       <td
