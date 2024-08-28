@@ -2,7 +2,7 @@ import React from 'react';
 import AttendanceGraph from '../components/AttendanceGraph';
 import Calendar from '../components/Calendar';
 import '../styles/HomePage.css';
-import bannerImage from '../assets/vector.png'; // Adjust the path accordingly
+import bannerImage from '../assets/vector.png'; 
 
 const HomePage = () => {
   const overallAttendance = [80, 20]; // Example data
