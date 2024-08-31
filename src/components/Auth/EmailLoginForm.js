@@ -2,7 +2,7 @@
 import React, { useState } from 'react';
 import { signInWithEmailAndPassword, createUserWithEmailAndPassword } from 'firebase/auth';
 import { auth } from '../../firebase/config';
-import PasswordResetForm from './PasswordResetForm';
+
 
 const EmailLoginForm = () => {
   const [email, setEmail] = useState('');
