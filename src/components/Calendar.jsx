@@ -28,7 +28,7 @@ const Calendar = () => {
         }
 
         const rows = data.values;
-        const days = ["MON", "TUE", "WED", "THURS", "FRI"];
+      
         
         // Get the current day and calculate the next day
         const currentDate = new Date();

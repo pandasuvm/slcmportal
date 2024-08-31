@@ -27,7 +27,7 @@ const ContactsPage = () => {
           throw new Error('No data found in the spreadsheet.');
         }
 
-        const [headers, ...rows] = data.values;
+        const [ ...rows] = data.values;
         const contactsList = rows.map(row => ({
           name: row[0],
           phone: row[1],
