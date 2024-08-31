@@ -8,7 +8,7 @@ import Sidebar from '../components/Sidebar';
 import '../styles/HomePage.css';
 import bannerImage from '../assets/vector.png';
 import { auth } from '../firebase/config'; // Import Firebase auth
-import { Colors } from 'chart.js';
+
 
 const HomePage = () => {
   const [user, setUser] = useState(null);
