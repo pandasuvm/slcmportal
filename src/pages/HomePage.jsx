@@ -1,14 +1,31 @@
 import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
+import { onAuthStateChanged, signOut } from 'firebase/auth';
 import AttendanceGraph from '../components/AttendanceGraph';
 import Calendar from '../components/Calendar';
 import Sidebar from '../components/Sidebar';
 import '../styles/HomePage.css';
 import bannerImage from '../assets/vector.png';
+import { auth } from '../firebase/config'; // Import Firebase auth
 
 const HomePage = () => {
+  const [user, setUser] = useState(null);
   const [overallAttendance, setOverallAttendance] = useState([0, 0]);
   const [subjectAttendance, setSubjectAttendance] = useState({});
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    // Listen for authentication state changes
+    const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
+      if (currentUser) {
+        setUser(currentUser);
+      } else {
+        navigate('/login');
+      }
+    });
+
+    return () => unsubscribe();
+  }, [navigate]);
 
   useEffect(() => {
     const fetchAttendanceData = async () => {
@@ -62,14 +79,22 @@ const HomePage = () => {
     fetchAttendanceData();
   }, []);
 
+  const handleLogout = async () => {
+    try {
+      await signOut(auth); // Log out the user
+      navigate('/login');
+    } catch (error) {
+      console.error('Error during logout:', error.message);
+    }
+  };
+
   return (
     <div className="home-wrapper">
       <Sidebar />
-
       <div className="home-container">
         <div className="left-section">
           <div className="greeting-box">
-            <h2>Hey, Harshita!</h2>
+            <h2>Hey, {user?.displayName || 'User'}!</h2>
             <p>
               You have 1 new assessment to do.
               <div>
@@ -110,6 +135,7 @@ const HomePage = () => {
         </div>
         <div className="right-section">
           <Calendar />
+          <button onClick={handleLogout} className="login-button">Logout</button>
         </div>
       </div>
     </div>

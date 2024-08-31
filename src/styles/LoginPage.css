@@ -1,0 +1,75 @@
+/* src/styles/LoginPage.css */
+
+
+  
+  .login-container {
+     margin-top: 150px;
+    margin-left: 530px;
+    background-color: #d9d9d9;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+    max-width: 400px;
+    width: 100%;
+    text-align: center;
+  }
+  
+  .login-container h2 {
+    margin-bottom: 20px;
+    font-size: 24px;
+    color: #333333;
+  }
+  
+  .login-container h2::before {
+    content: "SLCM-LOGIN";
+    display: block;
+    font-size: 16px;
+    color: #777777;
+    margin-bottom: 10px;
+    letter-spacing: 2px;
+  }
+  
+  .login-container input {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid #dddddd;
+    border-radius: 5px;
+    font-size: 14px;
+  }
+  
+  .login-container button {
+    width: 100%;
+    padding: 10px;
+    margin-top: 10px;
+    background-color: #007bff;
+    color: #ffffff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+  }
+  
+  .login-container button:hover {
+    background-color: #0056b3;
+  }
+  
+  .login-container .google-login-button {
+    background-color: #db4437;
+    margin-top: 10px;
+  }
+  
+  .login-container .google-login-button:hover {
+    background-color: #b33629;
+  }
+  
+  .login-container .toggle-form {
+    background-color: #6c757d;
+    color: #ffffff;
+  }
+  
+  .login-container .toggle-form:hover {
+    background-color: #5a6268;
+  }
+  
