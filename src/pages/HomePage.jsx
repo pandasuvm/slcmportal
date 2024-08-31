@@ -1,17 +1,21 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import { onAuthStateChanged, signOut } from 'firebase/auth';
+import axios from 'axios';
 import AttendanceGraph from '../components/AttendanceGraph';
 import Calendar from '../components/Calendar';
 import Sidebar from '../components/Sidebar';
 import '../styles/HomePage.css';
 import bannerImage from '../assets/vector.png';
 import { auth } from '../firebase/config'; // Import Firebase auth
+import { Colors } from 'chart.js';
 
 const HomePage = () => {
   const [user, setUser] = useState(null);
   const [overallAttendance, setOverallAttendance] = useState([0, 0]);
   const [subjectAttendance, setSubjectAttendance] = useState({});
+  const [assignmentsData, setAssignmentsData] = useState([]);
+  const [nearestNextDay, setNearestNextDay] = useState('');
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -79,6 +83,47 @@ const HomePage = () => {
     fetchAttendanceData();
   }, []);
 
+  useEffect(() => {
+    const fetchAssignmentsData = async () => {
+      const sheetId = '1a8ksEGjlQ5sg6-a8nS7AAk2LS3ZjxF5XJOgOb1GPklM';
+      const apiKey = 'AIzaSyDfp9sC09FVbpFLKO9iW65VPneEPvIyIHU';
+      const range = 'Sheet3!A2:D';
+
+      try {
+        const response = await axios.get(
+          `https://sheets.googleapis.com/v4/spreadsheets/${sheetId}/values/${range}?key=${apiKey}`
+        );
+
+        const rows = response.data.values || [];
+        const assignments = [];
+
+        rows.forEach(row => {
+          const [date, title, progress] = row;
+          const formattedDate = new Date(date).toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric' });
+
+          assignments.push({
+            date: formattedDate,
+            title,
+            progress: parseFloat(progress),
+          });
+        });
+
+        setAssignmentsData(assignments);
+
+        // Find the nearest next day with assignments
+        const today = new Date();
+        const nearestAssignment = assignments.find(assignment => new Date(assignment.date) > today);
+        if (nearestAssignment) {
+          setNearestNextDay(nearestAssignment.date);
+        }
+      } catch (error) {
+        console.error('Error fetching data:', error.message);
+      }
+    };
+
+    fetchAssignmentsData();
+  }, []);
+
   const handleLogout = async () => {
     try {
       await signOut(auth); // Log out the user
@@ -135,6 +180,30 @@ const HomePage = () => {
         </div>
         <div className="right-section">
           <Calendar />
+          {nearestNextDay && (
+            <div className="assignments-box">
+              <h3>Assignments for {nearestNextDay}</h3>
+              <div className="assignments-list">
+                {assignmentsData
+                  .filter(assignment => assignment.date === nearestNextDay)
+                  .map((assignment, index) => (
+                    <div key={index} className="assignment-item">
+                      <span className="assignment-title">{assignment.title}</span>
+                      <div className="progress-bar">
+                        <div
+                          className="progress-fill"
+                          style={{
+                            width: `${assignment.progress}%`,
+                            
+                          }}
+                        ></div>
+                      </div>
+                      <p className='para'>{assignment.progress}% Completed</p>
+                    </div>
+                  ))}
+              </div>
+            </div>
+          )}
           <button onClick={handleLogout} className="login-button">Logout</button>
         </div>
       </div>
